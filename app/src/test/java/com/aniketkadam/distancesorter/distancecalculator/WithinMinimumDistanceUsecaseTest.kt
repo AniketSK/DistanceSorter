@@ -23,9 +23,14 @@ class WithinMinimumDistanceUsecaseTest {
                 62.2
             ),
             DistanceTestAnswers(
+                Coordinates(43.677, -79.630),
+                Coordinates(-26.133, 28.242),
+                13368.8
+            ),
+            DistanceTestAnswers(
                 Coordinates(53.2731, -9.0637),
                 Coordinates(-37.6284, 143.7533),
-                17295.39179320
+                17301.3
             )
         )
 
