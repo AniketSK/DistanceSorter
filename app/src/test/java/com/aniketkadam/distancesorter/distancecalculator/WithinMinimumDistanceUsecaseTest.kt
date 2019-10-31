@@ -16,6 +16,9 @@ class WithinMinimumDistanceUsecaseTest {
             Coordinates(52.986375, -6.043701)
         )
 
-        assertThat(distance, equalTo(41.7))
+        val calculatedDistanceToErrorMargin = calculator.roundToErrorMargin(distance)
+        val expectedValue = calculator.roundToErrorMargin(41.76878232016648)
+
+        assertThat(calculatedDistanceToErrorMargin, equalTo(expectedValue))
     }
 }
