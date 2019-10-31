@@ -23,7 +23,7 @@ val l2 : Double = toRadians(-6.043701)
 val t1 : Double = toRadians(53.339428)
 val t2 : Double = toRadians(52.986375)
 
-val dLambda : Double = abs(l1) - abs(l2)
+val dLambda : Double = l1 - l2
 
 val centralAngle = acos(sin(t1) * sin(t2) + cos(t1) * cos(t2) * cos(dLambda))
 
