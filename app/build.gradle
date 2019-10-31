@@ -54,4 +54,5 @@ dependencies {
     kapt dagger.androidAnnotationProcessor
     kaptAndroidTest dagger.androidAnnotationProcessor
 
+    implementation gson.lib
 }
