@@ -3,8 +3,13 @@ package com.aniketkadam.distancesorter.distancecalculator
 import androidx.annotation.VisibleForTesting
 import com.aniketkadam.distancesorter.distancecalculator.data.Coordinates
 import com.aniketkadam.distancesorter.distancecalculator.data.Customer
+import java.lang.Math.toRadians
 import java.math.BigDecimal
 import java.math.RoundingMode
+import kotlin.math.abs
+import kotlin.math.acos
+import kotlin.math.cos
+import kotlin.math.sin
 
 private const val equatorialRadius: Double = 6378.137
 private const val polarRadius: Double = 6356.752
@@ -14,7 +19,17 @@ class WithinMinimumDistanceUsecase {
 
     @VisibleForTesting
     fun calculateDistance(pointA: Coordinates, pointB: Coordinates): Double {
-        TODO()
+        val lambda1: Double = toRadians(pointA.longitude)
+        val theta1: Double = toRadians(pointA.latitude)
+
+        val lambda2: Double = toRadians(pointB.longitude)
+        val theta2: Double = toRadians(pointB.latitude)
+
+        val deltaLambda = abs(lambda1) - abs(lambda2)
+        val centralAngle =
+            acos(sin(theta1) * sin(theta2) + cos(theta1) * cos(theta2) * cos(deltaLambda))
+
+        return meanEarthRadius * centralAngle
     }
 
     @VisibleForTesting
