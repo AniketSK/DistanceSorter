@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -32,4 +34,24 @@ dependencies {
     testImplementation testlib.junit
     androidTestImplementation adxTestLib.testext
     androidTestImplementation adxTestLib.espresso
+
+    testImplementation hamcrest.lib
+    testImplementation mockk.lib
+
+    implementation rxjava.lib
+    implementation rxjava.android
+
+    implementation lifecycle.extensions
+    kapt lifecycle.kotlinCompiler
+    testImplementation lifecycle.testhelper
+
+    // Dagger
+    implementation dagger.lib
+    kapt dagger.compiler
+    kaptAndroidTest dagger.compiler
+    implementation dagger.android
+    implementation dagger.support
+    kapt dagger.androidAnnotationProcessor
+    kaptAndroidTest dagger.androidAnnotationProcessor
+
 }
