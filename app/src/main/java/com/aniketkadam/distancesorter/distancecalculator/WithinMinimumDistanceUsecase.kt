@@ -6,6 +6,10 @@ import com.aniketkadam.distancesorter.distancecalculator.data.Customer
 import java.math.BigDecimal
 import java.math.RoundingMode
 
+private const val equatorialRadius: Double = 6378.137
+private const val polarRadius: Double = 6356.752
+private const val meanEarthRadius: Double = (1.0 / 3.0) * (2 * equatorialRadius + polarRadius)
+
 class WithinMinimumDistanceUsecase {
 
     @VisibleForTesting
@@ -26,3 +30,4 @@ class WithinMinimumDistanceUsecase {
     fun execute(origin: Coordinates, minimumDistance: Double, customers: List<Customer>) =
         customers.filter { isWithinMinimumDistance(origin, it.location, minimumDistance) }
 }
+
