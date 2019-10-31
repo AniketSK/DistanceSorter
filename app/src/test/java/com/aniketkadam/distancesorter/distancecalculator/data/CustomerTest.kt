@@ -8,7 +8,7 @@ import org.junit.Test
 class CustomerTest {
 
     @Test
-    fun `customer names deserialize correctly`() {
+    fun `customer data deserializes correctly`() {
         val sampleJson =
             "{\"latitude\": \"52.986375\", \"user_id\": 12, \"name\": \"Christina McArdle\", \"longitude\": \"-6.043701\"}"
         val response = Gson().fromJson(sampleJson, CustomerResponse::class.java)
