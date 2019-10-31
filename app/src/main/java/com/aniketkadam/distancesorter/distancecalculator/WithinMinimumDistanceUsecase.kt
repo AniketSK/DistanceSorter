@@ -6,7 +6,7 @@ import com.aniketkadam.distancesorter.distancecalculator.data.Customer
 import java.lang.Math.toRadians
 import java.math.BigDecimal
 import java.math.RoundingMode
-import kotlin.math.abs
+
 import kotlin.math.acos
 import kotlin.math.cos
 import kotlin.math.sin
@@ -25,7 +25,7 @@ class WithinMinimumDistanceUsecase {
         val lambda2: Double = toRadians(pointB.longitude)
         val theta2: Double = toRadians(pointB.latitude)
 
-        val deltaLambda = abs(lambda1) - abs(lambda2)
+        val deltaLambda = lambda1 - lambda2
         val centralAngle =
             acos(sin(theta1) * sin(theta2) + cos(theta1) * cos(theta2) * cos(deltaLambda))
 
