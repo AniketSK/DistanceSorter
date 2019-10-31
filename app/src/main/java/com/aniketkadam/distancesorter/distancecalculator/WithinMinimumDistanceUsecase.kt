@@ -20,14 +20,14 @@ class WithinMinimumDistanceUsecase {
     @VisibleForTesting
     fun calculateDistance(pointA: Coordinates, pointB: Coordinates): Double {
         val lambda1: Double = toRadians(pointA.longitude)
-        val theta1: Double = toRadians(pointA.latitude)
+        val phi1: Double = toRadians(pointA.latitude)
 
         val lambda2: Double = toRadians(pointB.longitude)
-        val theta2: Double = toRadians(pointB.latitude)
+        val phi2: Double = toRadians(pointB.latitude)
 
         val deltaLambda = lambda1 - lambda2
         val centralAngle =
-            acos(sin(theta1) * sin(theta2) + cos(theta1) * cos(theta2) * cos(deltaLambda))
+            acos(sin(phi1) * sin(phi2) + cos(phi1) * cos(phi2) * cos(deltaLambda))
 
         return meanEarthRadius * centralAngle
     }
