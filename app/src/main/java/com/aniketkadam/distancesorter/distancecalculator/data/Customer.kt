@@ -1,8 +1,7 @@
 package com.aniketkadam.distancesorter.distancecalculator.data
 
 data class Customer(
-    val latitude: Double,
-    val longitude: Double,
+    val location: Coordinates,
     val userId: Int,
     val name: String
 )
