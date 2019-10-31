@@ -37,7 +37,7 @@ class WithinMinimumDistanceUsecase {
         calculateDistance(pointA, pointB) <= minimumDistance
 
     @VisibleForTesting
-    fun roundToErrorMargin(number: Double) = BigDecimal(number).setScale(
+    fun roundToErrorMargin(number: Double): BigDecimal = BigDecimal(number).setScale(
         1,
         RoundingMode.HALF_EVEN
     ) // Error margin is 0.5km for a 100km radius
