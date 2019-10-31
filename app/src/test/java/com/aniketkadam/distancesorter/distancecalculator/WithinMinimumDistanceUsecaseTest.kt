@@ -11,14 +11,29 @@ class WithinMinimumDistanceUsecaseTest {
 
     @Test
     fun `distance between two points is calculated correctly`() {
-        val distance = calculator.calculateDistance(
-            Coordinates(53.339428, -6.257664),
-            Coordinates(52.986375, -6.043701)
+        val testValues = listOf(
+            DistanceTestAnswers(
+                Coordinates(53.339428, -6.257664),
+                Coordinates(52.986375, -6.043701),
+                41.76878232016648
+            )
         )
 
-        val calculatedDistanceToErrorMargin = calculator.roundToErrorMargin(distance)
-        val expectedValue = calculator.roundToErrorMargin(41.76878232016648)
+        testValues.forEach {
+            val distance = calculator.calculateDistance(
+                it.pointA, it.pointB
+            )
 
-        assertThat(calculatedDistanceToErrorMargin, equalTo(expectedValue))
+            val calculatedDistanceToErrorMargin = calculator.roundToErrorMargin(distance)
+            val expectedValue = calculator.roundToErrorMargin(it.expectedDistance)
+            assertThat(calculatedDistanceToErrorMargin, equalTo(expectedValue))
+        }
     }
+
 }
+
+private data class DistanceTestAnswers(
+    val pointA: Coordinates,
+    val pointB: Coordinates,
+    val expectedDistance: Double
+)
