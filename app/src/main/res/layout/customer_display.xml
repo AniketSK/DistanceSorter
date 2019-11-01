@@ -8,8 +8,19 @@
             type="com.aniketkadam.distancesorter.distancecalculator.data.Customer" />
     </data>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@{customer.name}" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{customer.userId}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{customer.name}" />
+    </LinearLayout>
+
 </layout>
