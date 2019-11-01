@@ -4,4 +4,6 @@ data class Customer(
     val location: Coordinates,
     val userId: Int,
     val name: String
-)
+) {
+    fun getUserIdAsString(): String = userId.toString()
+}
