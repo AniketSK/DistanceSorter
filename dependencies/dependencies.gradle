@@ -30,7 +30,7 @@ ext {
             espresso          : "3.2.0",
             adxEspresso       : "3.2.0",
             adxTestExt        : "1.1.1",
-            lifecycle         : "2.0.0",
+            lifecycle         : "2.1.0",
             navigation        : "2.2.0-beta01",
             jodatime          : "2.10.2",
             jetifier          : "1.0.0-beta05",
