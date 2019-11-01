@@ -22,7 +22,7 @@ class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Re
     private fun beginLoadingCustomerData() {
         _customersWithinMinDistance.value = Lce.Loading
         viewModelScope.launch {
-            _customersWithinMinDistance.postValue(Lce.Content(getCustomersWithinMinimumDistance()))
+            _customersWithinMinDistance.value = Lce.Content(getCustomersWithinMinimumDistance())
         }
     }
 
