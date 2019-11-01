@@ -13,8 +13,6 @@ class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Re
     private val _customersWithinMinDistance: MutableLiveData<Lce> = MutableLiveData()
     val customersWithinMinDistance: LiveData<Lce> = _customersWithinMinDistance
 
-    private val withinMinimumDistanceUseCase = WithinMinimumDistanceUsecase()
-
     init {
         beginLoadingCustomerData()
     }
@@ -30,7 +28,11 @@ class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Re
         val origin = repo.getCoordinatesToMeasureDistanceFrom()
         val minimumDistance = repo.getMinimumDistance()
 
-        return withinMinimumDistanceUseCase.execute(origin, minimumDistance, repo.getAllCustomers())
+        return WithinMinimumDistanceUsecase().execute(
+            origin,
+            minimumDistance,
+            repo.getAllCustomers()
+        )
     }
 
 }
