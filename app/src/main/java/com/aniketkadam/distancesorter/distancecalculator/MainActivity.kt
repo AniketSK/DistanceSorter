@@ -12,7 +12,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var vm: DistanceCalculatorViewModel
-    val adapter: CustomerAdapter = CustomerAdapter()
+    private val adapter: CustomerAdapter = CustomerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
