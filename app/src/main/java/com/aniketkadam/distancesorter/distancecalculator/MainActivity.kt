@@ -29,12 +29,16 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun renderData(it: Lce?): Unit = when (it) {
-        is Lce.Loading -> emptyView.visibility = View.VISIBLE
+        is Lce.Loading -> showLoading(true)
         is Lce.Content -> {
-            emptyView.visibility = View.GONE
+            showLoading(false)
             adapter.submitList(it.customers)
         }
-        null -> {
+        null -> { // Do nothing if it's null
         }
+    }
+
+    private fun showLoading(show: Boolean) {
+        emptyView.visibility = if (show) View.VISIBLE else View.GONE
     }
 }
