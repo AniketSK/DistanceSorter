@@ -7,11 +7,13 @@ Before the how, let's see what the end result looks like:
 
 Let's take a look at the UI
 
-First, when the app is launched, we know the data is going to take some time to process so show loading:
-![Loading data is being shown on an otherwise empty screen](outputs/load.png)
+Launched    | Loaded
+:----------:|:--------------:
+First, when the app is launched, the data is going to take some time to process, loading is shown | Once the data is loaded, and this happens asynchronously on a background thread, it is updated to the view.
+![Loading data is being shown on an otherwise empty screen](outputs/load.png) | ![A list of results is shown](outputs/data_loaded.jpg)
 
-Once the data is loaded, and this happens asynchronously on a background thread, it is updated to the view.
-![A list of results is shown](outputs/data_loaded.jpg)
+
+
 
 # Architecture
 The architecture of the app is LiveData to represent the view, coroutines for asynchronous handling of data. Together it achieves an MVVM style, which is aided by Dagger-Android's dependency injection. I normally use Rx though as can be seen from my other projects.
