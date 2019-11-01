@@ -1,11 +1,13 @@
 package com.aniketkadam.distancesorter.distancecalculator.data
 
+import com.aniketkadam.distancesorter.distancecalculator.distancesorter.di.CUSTOMER_DATA_INPUTSTREAM
 import com.google.gson.Gson
 import java.io.InputStream
 import javax.inject.Inject
+import javax.inject.Named
 
 class CustomerApi @Inject constructor(
-    private val customerFile: InputStream,
+    @Named(CUSTOMER_DATA_INPUTSTREAM) private val customerFile: InputStream,
     private val gson: Gson
 ) {
 
