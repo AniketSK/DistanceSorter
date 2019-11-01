@@ -1,10 +1,16 @@
 package com.aniketkadam.distancesorter.distancecalculator
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
+import androidx.lifecycle.Observer
 import com.aniketkadam.distancesorter.R
+import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var vm: DistanceCalculatorViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
