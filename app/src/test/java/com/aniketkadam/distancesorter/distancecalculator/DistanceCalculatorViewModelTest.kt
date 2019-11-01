@@ -51,7 +51,7 @@ class DistanceCalculatorViewModelTest {
             )
 
             assertThat(
-                vm.customersWithinMinDistance.getOrAwaitValue(numValues = 2),
+                vm.customersWithinMinDistance.getOrAwaitValue(time = 5, numValues = 2),
                 equalTo<Lce>(Lce.Content(expectedOrder))
             )
         }
