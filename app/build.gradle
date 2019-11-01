@@ -55,4 +55,6 @@ dependencies {
     kaptAndroidTest dagger.androidAnnotationProcessor
 
     implementation gson.lib
+    testImplementation coroutinesLib.test
+    implementation coroutinesLib.lib
 }
