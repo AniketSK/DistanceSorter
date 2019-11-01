@@ -10,14 +10,19 @@ import kotlinx.coroutines.launch
 class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Repository) :
     ViewModel() {
 
-    private val _customersWithinMinDistance: MutableLiveData<List<Customer>> = MutableLiveData()
-    val customersWithinMinDistance: LiveData<List<Customer>> = _customersWithinMinDistance
+    private val _customersWithinMinDistance: MutableLiveData<Lce> = MutableLiveData()
+    val customersWithinMinDistance: LiveData<Lce> = _customersWithinMinDistance
 
     private val withinMinimumDistanceUseCase = WithinMinimumDistanceUsecase()
 
     init {
+        beginLoadingCustomerData()
+    }
+
+    private fun beginLoadingCustomerData() {
+        _customersWithinMinDistance.value = Lce.Loading
         viewModelScope.launch {
-            _customersWithinMinDistance.value = getCustomersWithinMinimumDistance()
+            _customersWithinMinDistance.value = Lce.Content(getCustomersWithinMinimumDistance())
         }
     }
 
@@ -28,4 +33,10 @@ class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Re
         return withinMinimumDistanceUseCase.execute(origin, minimumDistance, repo.getAllCustomers())
     }
 
+}
+
+sealed class Lce {
+    object Loading : Lce()
+    data class Content(val customers: List<Customer>) : Lce()
+    // No error since none is possible yet
 }

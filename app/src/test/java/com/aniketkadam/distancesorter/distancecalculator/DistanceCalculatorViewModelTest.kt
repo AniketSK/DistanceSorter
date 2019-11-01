@@ -50,7 +50,9 @@ class DistanceCalculatorViewModelTest {
                 Customer(Coordinates(53.339528, -6.257464), 4, "Closeby")
             )
 
-
-            assertThat(vm.customersWithinMinDistance.getOrAwaitValue(), equalTo(expectedOrder))
+            assertThat(
+                vm.customersWithinMinDistance.getOrAwaitValue(numValues = 2),
+                equalTo<Lce>(Lce.Content(expectedOrder))
+            )
         }
 }
