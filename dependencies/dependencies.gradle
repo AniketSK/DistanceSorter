@@ -57,6 +57,13 @@ ext {
             arrow             : "0.10.0",
             workmanager       : "2.2.0",
             kotlinimmutable   : "0.3",
+            coroutines        : "1.3.2",
+    ]
+
+    coroutinesLib = [
+            lib    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
+            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
+            test   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
     ]
 
     kotlinimmutable = [
