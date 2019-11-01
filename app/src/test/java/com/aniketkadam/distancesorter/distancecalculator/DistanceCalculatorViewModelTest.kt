@@ -1,16 +1,28 @@
 package com.aniketkadam.distancesorter.distancecalculator
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.aniketkadam.distancesorter.distancecalculator.data.Coordinates
 import com.aniketkadam.distancesorter.distancecalculator.data.Customer
+import com.aniketkadam.distancesorter.util.MainCoroutineRule
+import com.aniketkadam.distancesorter.util.getOrAwaitValue
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
+import org.junit.Rule
 import org.junit.Test
 
 class DistanceCalculatorViewModelTest {
+
+    @Rule
+    @JvmField
+    val instantExecutorRule = InstantTaskExecutorRule()
+
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
 
     @ExperimentalCoroutinesApi
     @Test
@@ -37,6 +49,8 @@ class DistanceCalculatorViewModelTest {
                 Customer(Coordinates(53.339428, -6.257664), 3, "Mark lives at the office"),
                 Customer(Coordinates(53.339528, -6.257464), 4, "Closeby")
             )
-            assertThat(vm.getCustomersWithinMinimumDistance(), equalTo(expectedOrder))
+
+
+            assertThat(vm.customersWithinMinDistance.getOrAwaitValue(), equalTo(expectedOrder))
         }
 }
