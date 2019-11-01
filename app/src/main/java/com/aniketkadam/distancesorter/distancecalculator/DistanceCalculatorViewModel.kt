@@ -8,7 +8,7 @@ class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Re
 
     private val withinMinimumDistanceUseCase = WithinMinimumDistanceUsecase()
 
-    fun getClosestCustomers(): List<Customer> {
+    fun getCustomersWithinMinimumDistance(): List<Customer> {
         val origin = repo.getCoordinatesToMeasureDistanceFrom()
         val minimumDistance = repo.getMinimumDistance()
 

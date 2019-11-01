@@ -33,6 +33,6 @@ class DistanceCalculatorViewModelTest {
             Customer(Coordinates(53.339428, -6.257664), 3, "Mark lives at the office"),
             Customer(Coordinates(53.339528, -6.257464), 4, "Closeby")
         )
-        assertThat(vm.getClosestCustomers(), equalTo(expectedOrder))
+        assertThat(vm.getCustomersWithinMinimumDistance(), equalTo(expectedOrder))
     }
 }
