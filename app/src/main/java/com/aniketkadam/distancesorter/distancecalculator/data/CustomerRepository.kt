@@ -1,9 +1,11 @@
 package com.aniketkadam.distancesorter.distancecalculator.data
 
 import com.aniketkadam.distancesorter.distancecalculator.DistanceViewModelContract
+import javax.inject.Inject
 
 
-class CustomerRepository : DistanceViewModelContract.Repository {
+class CustomerRepository @Inject constructor(private val customerApi: CustomerApi) :
+    DistanceViewModelContract.Repository {
 
     private val dublinOfficeCoordinates = Coordinates(53.339428, -6.257664)
 
@@ -11,6 +13,6 @@ class CustomerRepository : DistanceViewModelContract.Repository {
 
     override fun getMinimumDistance(): Double = 100.0
 
-    override fun getAllCustomers(): List<Customer> = TODO()
+    override fun getAllCustomers(): List<Customer> = customerApi.getCustomerData()
 
 }
