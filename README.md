@@ -1,19 +1,32 @@
-# Distance Sorter
+# Distance Sorter [![Build Status](https://app.bitrise.io/app/43d8f05c6f803edd/status.svg?token=-w7xmHJLNrWSEYSx9P07dQ)](https://app.bitrise.io/app/43d8f05c6f803edd)
 The purpose of this app is to take a list of customers from a file and list those within 100km of a particular location.
 
 If you're only interested in the text version of the output, [here](outputs/output.txt) it is.
 
 Before the how, let's see what the end result looks like:
 
-Let's take a look at the UI
+Let's take a look at the UI, please scroll past it for the rest of the documentation.
 
 Launched    | Loaded
 :----------:|:--------------:
-First, when the app is launched, the data is going to take some time to process, loading is shown | Once the data is loaded, and this happens asynchronously on a background thread, it is updated to the view.
+First, when the app is launched, the data is going to take some time to process, loading is shown. | Once the data is loaded, and this happens asynchronously on a background thread, it is updated to the view.
 ![Loading data is being shown on an otherwise empty screen](outputs/load.png) | ![A list of results is shown](outputs/data_loaded.jpg)
 
+### Running Tests
+Tests can be run by executing in the root folder:
 
+`./gradlew test` for the unit tests
 
+`./gradlew cAT` for the instrumentation tests that require an active emulator or connected device.
+
+Tests are majority unit tests, can be found in [this](app/src/test/java/com/aniketkadam/distancesorter/distancecalculator) and [this](app/src/test/java/com/aniketkadam/distancesorter/distancecalculator/data) directory if you'd like to look through them.
+
+There's a single instrumentation test that checks the overall expected behaviour [here](app/src/androidTest/java/com/aniketkadam/distancesorter/distancecalculator/MainActivityTest.kt).
+
+### Installing the app
+You would need to have the android sdk and such installed to build from scratch. If you do, running `./gradlew installDebug` (if on linux), will build and install the app.
+
+It can also be opened in Android Studio and run on a device the regular way.
 
 # Architecture
 The architecture of the app is LiveData to represent the view, coroutines for asynchronous handling of data. Together it achieves an MVVM style, which is aided by Dagger-Android's dependency injection. I normally use Rx though as can be seen from my other projects.
@@ -75,7 +88,12 @@ These are rounded off to 0.5% of the expected 100km distance.
 
 Since only the execute method which puts all parts of this together is a suspension function, the testing is simplified.
 
-# Calculation of great circle distance
+### Other Testing
+Extensive Unit Tests cover both the Use Case and the ViewModel as has been listed before.
+
+An Espresso test completes the check. [MainActivityTest](app/src/androidTest/java/com/aniketkadam/distancesorter/distancecalculator/MainActivityTest.kt) launches the app, and looks for one item in the recyclerview that's expected to open.
+
+### Calculation of great circle distance
 We're going to run an initial calculation of the two coordinates, 53.339428, -6.257664 and 52.986375, -6.043701
 Using the wikipedia formula:
 ```kotlin
