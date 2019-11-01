@@ -77,7 +77,7 @@ Since only the execute method which puts all parts of this together is a suspens
 
 # Calculation of great circle distance
 We're going to run an initial calculation of the two coordinates, 53.339428, -6.257664 and 52.986375, -6.043701
-Using the wikipedia forumla:
+Using the wikipedia formula:
 ```kotlin
 import java.lang.Math.*
 
