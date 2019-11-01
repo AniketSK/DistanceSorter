@@ -1,4 +1,7 @@
 
+# LiveData testing and modification to await multiple values.
+As stated [publicly](https://twitter.com/ppvi/status/1169498619105427456), livedata needs to be tested with a [copy/pasted](https://github.com/android/architecture-components-samples/blob/master/LiveDataSample/app/src/test/java/com/android/example/livedatabuilder/util/LiveDataTestUtil.kt) helper function.
+However, this class is insufficient for you're looking to await multiple values. So I [changed](https://github.com/AniketSK/DistanceSorter/commit/586a00b9713705a48c2d984fee800cf74370b656) the implementation to take this param.
 
 # Calculation of great circle distance
 We're going to run an initial calculation of the two coordinates, 53.339428, -6.257664 and 52.986375, -6.043701
