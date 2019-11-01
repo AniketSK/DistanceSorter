@@ -11,7 +11,7 @@ import org.junit.Test
 class DistanceCalculatorViewModelTest {
 
     @Test
-    fun `correctly finds the closest locations`() {
+    fun `correctly finds the customers within the minimum distance and orders them`() {
         val repo = mockk<DistanceViewModelContract.Repository> {
             every { getCoordinatesToMeasureDistanceFrom() } returns Coordinates(
                 53.339428,
