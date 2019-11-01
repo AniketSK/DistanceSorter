@@ -15,6 +15,10 @@ private const val equatorialRadius: Double = 6378.137
 private const val polarRadius: Double = 6356.752
 private const val meanEarthRadius: Double = (1.0 / 3.0) * (2 * equatorialRadius + polarRadius)
 
+/**
+ * Given a list of customers, the origin and the minimum required distance from the origin,
+ * return a list of customers within distance, sorted by userId.
+ */
 class WithinMinimumDistanceUsecase {
 
     @VisibleForTesting
