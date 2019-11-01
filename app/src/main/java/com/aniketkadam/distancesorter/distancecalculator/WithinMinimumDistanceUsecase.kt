@@ -44,5 +44,6 @@ class WithinMinimumDistanceUsecase {
 
     fun execute(origin: Coordinates, minimumDistance: Double, customers: List<Customer>) =
         customers.filter { isWithinMinimumDistance(origin, it.location, minimumDistance) }
+            .sortedBy { it.userId }
 }
 
