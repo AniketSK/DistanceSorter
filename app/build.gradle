@@ -58,4 +58,6 @@ dependencies {
     implementation gson.lib
     testImplementation coroutinesLib.test
     implementation coroutinesLib.lib
+
+    implementation androidxDependencies.recyclerView
 }
