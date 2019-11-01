@@ -1,4 +1,4 @@
-package di
+package com.aniketkadam.distancesorter.di
 
 import android.app.Application
 import android.content.Context
