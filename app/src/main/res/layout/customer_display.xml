@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:paddingEnd="10dp"
             android:paddingRight="10dp"
+            android:paddingStart="0dp"
+            android:paddingLeft="0dp"
             android:text="@{customer.getUserIdAsString()}" />
 
         <TextView
