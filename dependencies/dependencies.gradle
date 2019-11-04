@@ -49,7 +49,7 @@ ext {
             glide             : "4.9.0",
             rxrelay           : "2.1.0",
             uiautomator       : "2.2.0",
-            jraskalivedatatest: "1.1.0",
+            jraskalivedatatest: "1.1.1",
             idlingResources   : "1.0.0",
             guava             : "28.1-jre",
             gms               : "17.0.0",
