@@ -23,6 +23,11 @@ Tests are majority unit tests, can be found in [this](app/src/test/java/com/anik
 
 There's a single instrumentation test that checks the overall expected behaviour [here](app/src/androidTest/java/com/aniketkadam/distancesorter/distancecalculator/MainActivityTest.kt).
 
+### Coroutines vs Rx
+The background tasks are also done in Rx, with tests, as demonstrated in the branch, this test [rule](https://github.com/AniketSK/DistanceSorter/blob/afdbcae246493fce2c731af79c9acae25a104a7f/app/src/test/java/com/aniketkadam/distancesorter/RxImmediateSchedulerRule.kt#L9) is the main relevant change to tests.
+
+[Here's](https://github.com/AniketSK/DistanceSorter/blob/afdbcae246493fce2c731af79c9acae25a104a7f/app/src/main/java/com/aniketkadam/distancesorter/distancecalculator/DistanceCalculatorViewModel.kt#L24) the main difference in the ViewModel. 
+
 ### Installing the app
 You would need to have the android sdk and such installed to build from scratch. If you do, running `./gradlew installDebug` (if on linux), will build and install the app.
 
