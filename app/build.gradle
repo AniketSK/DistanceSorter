@@ -61,11 +61,11 @@ dependencies {
     kaptAndroidTest dagger.androidAnnotationProcessor
 
     implementation gson.lib
-    testImplementation coroutinesLib.test
-    implementation coroutinesLib.lib
 
     implementation androidxDependencies.recyclerView
 
     androidTestImplementation adxTestLib.rules
     androidTestImplementation adxTestLib.espressoContrib
+
+    testImplementation livedataCommunityTestHelper.lib
 }
