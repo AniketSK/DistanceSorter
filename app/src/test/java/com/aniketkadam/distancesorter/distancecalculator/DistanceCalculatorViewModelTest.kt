@@ -1,16 +1,12 @@
 package com.aniketkadam.distancesorter.distancecalculator
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.aniketkadam.distancesorter.RxImmediateSchedulerRule
 import com.aniketkadam.distancesorter.distancecalculator.data.Coordinates
 import com.aniketkadam.distancesorter.distancecalculator.data.Customer
-import com.aniketkadam.distancesorter.util.MainCoroutineRule
-import com.aniketkadam.distancesorter.util.getOrAwaitValue
+import com.jraska.livedata.test
 import io.mockk.every
 import io.mockk.mockk
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.equalTo
 import org.junit.Rule
 import org.junit.Test
 
@@ -20,14 +16,11 @@ class DistanceCalculatorViewModelTest {
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    @ExperimentalCoroutinesApi
     @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
+    val rxImmediateScheduler = RxImmediateSchedulerRule()
 
-    @ExperimentalCoroutinesApi
     @Test
-    fun `correctly finds the customers within the minimum distance and orders them`() =
-        runBlockingTest {
+    fun `correctly finds the customers within the minimum distance and orders them`() {
             val repo = mockk<DistanceViewModelContract.Repository> {
                 every { getCoordinatesToMeasureDistanceFrom() } returns Coordinates(
                     53.339428,

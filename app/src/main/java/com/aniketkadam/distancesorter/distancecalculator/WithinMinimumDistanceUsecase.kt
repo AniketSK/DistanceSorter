@@ -3,8 +3,6 @@ package com.aniketkadam.distancesorter.distancecalculator
 import androidx.annotation.VisibleForTesting
 import com.aniketkadam.distancesorter.distancecalculator.data.Coordinates
 import com.aniketkadam.distancesorter.distancecalculator.data.Customer
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.lang.Math.toRadians
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -47,10 +45,9 @@ class WithinMinimumDistanceUsecase {
         RoundingMode.HALF_EVEN
     ) // Error margin is 0.5km for a 100km radius
 
-    suspend fun execute(origin: Coordinates, minimumDistance: Double, customers: List<Customer>) =
-        withContext(Dispatchers.IO) {
+    fun execute(origin: Coordinates, minimumDistance: Double, customers: List<Customer>) =
         customers.filter { isWithinMinimumDistance(origin, it.location, minimumDistance) }
             .sortedBy { it.userId }
-        }
+
 }
 

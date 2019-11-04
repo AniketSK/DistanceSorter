@@ -3,12 +3,16 @@ package com.aniketkadam.distancesorter.distancecalculator
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.aniketkadam.distancesorter.distancecalculator.data.Customer
-import kotlinx.coroutines.launch
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Repository) :
     ViewModel() {
+
+    private val disposable = CompositeDisposable()
 
     private val _customersWithinMinDistance: MutableLiveData<Lce> = MutableLiveData()
     val customersWithinMinDistance: LiveData<Lce> = _customersWithinMinDistance
@@ -18,13 +22,18 @@ class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Re
     }
 
     private fun beginLoadingCustomerData() {
-        _customersWithinMinDistance.value = Lce.Loading
-        viewModelScope.launch {
-            _customersWithinMinDistance.value = Lce.Content(getCustomersWithinMinimumDistance())
-        }
+        disposable.add(
+            Observable.just<Lce>(Lce.Content(getCustomersWithinMinimumDistance()))
+                .startWith(Lce.Loading)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    _customersWithinMinDistance.value = it
+                }
+        )
     }
 
-    private suspend fun getCustomersWithinMinimumDistance(): List<Customer> {
+    private fun getCustomersWithinMinimumDistance(): List<Customer> {
         val origin = repo.getCoordinatesToMeasureDistanceFrom()
         val minimumDistance = repo.getMinimumDistance()
 
@@ -35,6 +44,10 @@ class DistanceCalculatorViewModel(private val repo: DistanceViewModelContract.Re
         )
     }
 
+    override fun onCleared() {
+        disposable.clear()
+        super.onCleared()
+    }
 }
 
 sealed class Lce {
